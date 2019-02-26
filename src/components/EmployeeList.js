@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-
 export default class EmployeeList  extends Component {
     render() {
         return (
@@ -7,7 +6,9 @@ export default class EmployeeList  extends Component {
                 {
                     this.props.employees.map(employee => 
                         <div key={employee.id}>
-                            {employee.first_name} {employee.last_name}<br />
+                            {employee.first_name} {employee.last_name}
+                            {employee.hasOwnProperty("position") ? ", manager" : ""}
+                            <br />
                             contact: {employee.phone}
                         </div>
                         )
