@@ -6,7 +6,7 @@ export default class StoreList  extends Component {
             <article className="locations">
                 <h2>Location List</h2>
                 {
-                    this.props.locations.map(location => 
+                    this.props.stores.map(location => 
                         <div key={location.id}>
                             <h3>{location.name}</h3>
                             {location.address}
