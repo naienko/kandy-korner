@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-export default class ExployeeList  extends Component {
+export default class EmployeeList  extends Component {
     render() {
         return (
             <React.Fragment>

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import EmployeeList from './EmployeeList';
 
 export default class StoreList  extends Component {
     render() {
@@ -10,6 +11,12 @@ export default class StoreList  extends Component {
                         <div key={location.id}>
                             <h3>{location.name}</h3>
                             {location.address}
+                            <p>Employees</p>
+                            <section className="employees-local">
+                            <EmployeeList employees={this.props.employees
+                                .filter( employee => employee.storeId === location.id )
+                                }/>
+                            </section>
                         </div>
                         )
                 }

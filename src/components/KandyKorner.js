@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import StoreList from './StoreList';
-import EmployeeList from './EmployeeList';
 import CandyList from './CandyList';
 
 export default class KandyKorner extends Component {
@@ -44,11 +43,12 @@ export default class KandyKorner extends Component {
     render() {
         return (
             <React.Fragment>
-                <StoreList stores={this.state.locations} />
-                <EmployeeList employees={this.state.employees} />
+                <StoreList stores={this.state.locations} 
+                    employees={this.state.employees} />
                 <article className="candies">
                     <h2>Candy List</h2>
-                    <CandyList candies={this.state.candies} types={this.state.types} />
+                    <CandyList candies={this.state.candies} 
+                        types={this.state.types} />
                 </article>
             </React.Fragment>
         );
