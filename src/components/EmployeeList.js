@@ -3,16 +3,16 @@ import React, { Component } from 'react'
 export default class ExployeeList  extends Component {
     render() {
         return (
-            <article className="employees">
-                <h2>Employee List</h2>
+            <React.Fragment>
                 {
                     this.props.employees.map(employee => 
                         <div key={employee.id}>
-                            {employee.name}
+                            {employee.name}<br />
+                            contact: {employee.phone}
                         </div>
                         )
                 }
-            </article>
+            </React.Fragment>
         );
     }
 }

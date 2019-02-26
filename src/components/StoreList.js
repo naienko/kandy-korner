@@ -4,7 +4,7 @@ export default class StoreList  extends Component {
     render() {
         return (
             <article className="locations">
-                <h2>Location List</h2>
+                <h2>Store List</h2>
                 {
                     this.props.stores.map(location => 
                         <div key={location.id}>
