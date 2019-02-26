@@ -30,5 +30,19 @@ export default class KandyKorner extends Component {
         { id: 6, name: "Gummy Bears", candyId: 2 }
     ]
 
+    state = {
+        candies: this.SpecificCandies,
+        employees: this.EmployeesFromAPI,
+        locations: this.LocationsFromAPI
+    }
 
+    render() {
+        return (
+            <React.Fragment>
+                <StoreList stores={this.state.locations} />
+                <EmployeeList employees={this.state.employees} />
+                <CandyList candies={this.state.candies} />
+            </React.Fragment>
+        );
+    }
 }
