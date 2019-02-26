@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import StoreList from './StoreList';
 
 export default class KandyKorner extends Component {
     
@@ -8,11 +9,11 @@ export default class KandyKorner extends Component {
     ]
 
     EmployeesFromAPI = [
-        { id: 1, name: "Summer Rainault" },
-        { id: 2, name: "Ashlin St Cyr" },
-        { id: 3, name: "Barry Allen" },
-        { id: 4, name: "Sebastien Sancerre" },
-        { id: 5, name: "Betwyr ap Ban" }
+        { id: 1, name: "Summer Rainault", storeId: 1 },
+        { id: 2, name: "Ashlin St Cyr", storeId: 2 },
+        { id: 3, name: "Barry Allen", storeId: 1 },
+        { id: 4, name: "Sebastien Sancerre", storeId: 1 },
+        { id: 5, name: "Betwyr ap Ban", storeId: 2 }
     ]
 
     CandyTypes = [
@@ -41,7 +42,9 @@ export default class KandyKorner extends Component {
             <React.Fragment>
                 <StoreList stores={this.state.locations} />
                 <EmployeeList employees={this.state.employees} />
-                <CandyList candies={this.state.candies} />
+                <article className="candies">
+                    <CandyList candies={this.state.candies} />
+                </article>
             </React.Fragment>
         );
     }
