@@ -36,7 +36,8 @@ export default class KandyKorner extends Component {
     state = {
         candies: this.SpecificCandies,
         employees: this.EmployeesFromAPI,
-        locations: this.LocationsFromAPI
+        locations: this.LocationsFromAPI,
+        types: this.CandyTypes
     }
 
     render() {
@@ -45,7 +46,8 @@ export default class KandyKorner extends Component {
                 <StoreList stores={this.state.locations} />
                 <EmployeeList employees={this.state.employees} />
                 <article className="candies">
-                    <CandyList candies={this.state.candies} />
+                    <h2>Candy List</h2>
+                    <CandyList candies={this.state.candies} types={this.state.types} />
                 </article>
             </React.Fragment>
         );
