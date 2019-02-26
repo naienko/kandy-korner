@@ -15,6 +15,7 @@ export default class StoreList  extends Component {
                             <section className="employees-local">
                             <EmployeeList employees={this.props.employees
                                 .filter( employee => employee.storeId === location.id )
+                                .sort((a, b) => (a.last_name > b.last_name) ? 1 : -1)
                                 }/>
                             </section>
                         </div>
