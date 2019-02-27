@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Route } from "react-router-dom";
 import StoreList from './StoreList';
 import CandyList from './CandyList';
 import EmployeeList from './EmployeeList';
@@ -53,7 +54,7 @@ export default class ApplicationView extends Component {
                 }} />
                 <Route path="/candies" render={() => {
                     return <CandyList candies={this.state.candies}
-                    type={this.state.types} />
+                    types={this.state.types} />
                 }}
                 />
             </div>
