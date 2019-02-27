@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css"
+import NameForm from "../SearchForm";
 
 export default class NavBar extends Component {
     render() {
@@ -16,7 +17,7 @@ export default class NavBar extends Component {
                     <Link className="nav-link" to="/candies">Candies</Link>
                 </li>
                 <li className="nav-item">
-                    <Link className="nav-link" to="/search">Search</Link>
+                    <NameForm />
                 </li>
             </nav>
         )

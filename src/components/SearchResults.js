@@ -5,7 +5,7 @@ export default class SearchResults extends Component {
 
     componentDidMount() {
         const newState = {};
-        const searchTerm = "A";
+        const searchTerm = this.state.value;
 
         fetch("http://localhost:8081/locations/")
             .then(results => results.json())
