@@ -3,6 +3,7 @@ import { Route } from "react-router-dom";
 import StoreList from './StoreList';
 import CandyList from './CandyList';
 import EmployeeList from './EmployeeList';
+import SearchResults from './SearchResults';
 
 export default class ApplicationView extends Component {
 
@@ -49,6 +50,10 @@ export default class ApplicationView extends Component {
                     return <CandyList candies={this.state.candies}
                     types={this.state.types} />
                 }}
+                />
+                <Route path="/search" render={() => {
+                    return <SearchResults />
+                }} 
                 />
             </div>
         );
