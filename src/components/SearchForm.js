@@ -18,10 +18,9 @@ export default class NameForm extends Component {
     handleSubmit(event) {        
         this.props.history.push("/search")
         fetch(`http://localhost:8081/employees/?first_name_like=${this.state.value}`)
-        .then(results => results.json())
-        .then(employees => newState.employees = employees)
-        //            .then(() => this.setState(newState))
-        
+            .then(results => results.json())
+            .then(employees => newState.employees = employees)
+            .then(this.props.history.push(newState))
         event.preventDefault();
     }
     
