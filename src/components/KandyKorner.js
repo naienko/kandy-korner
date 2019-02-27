@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import StoreList from './StoreList';
-import EmployeeList from './EmployeeList';
 import CandyList from './CandyList';
 
 export default class KandyKorner extends Component {
@@ -11,11 +10,12 @@ export default class KandyKorner extends Component {
     ]
 
     EmployeesFromAPI = [
-        { id: 1, name: "Summer Rainault", storeId: 1 },
-        { id: 2, name: "Ashlin St Cyr", storeId: 2 },
-        { id: 3, name: "Barry Allen", storeId: 1 },
-        { id: 4, name: "Sebastien Sancerre", storeId: 1 },
-        { id: 5, name: "Betwyr ap Ban", storeId: 2 }
+        { id: 1, first_name: "Summer", last_name: "Rainault", storeId: 1, phone: "555-555-5555", position: "manager" },
+        { id: 2, first_name: "Ashlin", last_name: "St Cyr", storeId: 2, phone: "234-435-7882" },
+        { id: 3, first_name: "Barry", last_name: "Allen", storeId: 1, phone: "xxx-xxx-xxxx" },
+        { id: 4, first_name: "Sebastien", last_name: "Sancerre", storeId: 1, phone: "123-245-7653" },
+        { id: 5, first_name: "Betwyr", last_name: "ap Ban", storeId: 2, phone: "n/a" },
+        { id: 6, first_name: "Winter", last_name: "Rainault", storeId: 2, phone: "555-555-5555", position: "manager" }
     ]
 
     CandyTypes = [
@@ -43,11 +43,12 @@ export default class KandyKorner extends Component {
     render() {
         return (
             <React.Fragment>
-                <StoreList stores={this.state.locations} />
-                <EmployeeList employees={this.state.employees} />
+                <StoreList stores={this.state.locations} 
+                    employees={this.state.employees} />
                 <article className="candies">
                     <h2>Candy List</h2>
-                    <CandyList candies={this.state.candies} types={this.state.types} />
+                    <CandyList candies={this.state.candies} 
+                        types={this.state.types} />
                 </article>
             </React.Fragment>
         );
