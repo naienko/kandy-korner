@@ -1,6 +1,8 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router";
 
-export default class NameForm extends Component {
+class NameForm extends Component {
+    
     constructor(props) {
         super(props);
         this.state = {
@@ -16,11 +18,14 @@ export default class NameForm extends Component {
     }
     
     handleSubmit(event) {        
-        this.props.history.push("/search")
+        const newState = {};
+
         fetch(`http://localhost:8081/employees/?first_name_like=${this.state.value}`)
             .then(results => results.json())
             .then(employees => newState.employees = employees)
-            .then(this.props.history.push(newState))
+            //.then(console.log(newState))
+            .then(this.props.history.push(`/search`, {state: newState}))
+            .then(console.log("props:", this.props))
         event.preventDefault();
     }
     
@@ -33,6 +38,8 @@ export default class NameForm extends Component {
             </label>
             <input type="submit" value="Submit" />
             </form>
-            );
-        }
+        );
     }
+}
+
+export default withRouter(NameForm);
