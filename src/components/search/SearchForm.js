@@ -20,18 +20,18 @@ class NameForm extends Component {
     handleSubmit(event) {        
         const newState = {};
 
-        fetch(`http://localhost:8081/employees/?first_name_like=${this.state.value}`)
+        fetch(`http://localhost:8081/employees/?first_name_like=${this.state.value}&last_name_like=${this.state.value}`)
             .then(results => results.json())
             .then(employees => newState.employees = employees)
-            // .then(() => fetch(`http://localhost:8081/employees/?last_name_like=${this.state.value}`))
-            // .then(results => results.json())
-            // .then(employees => newState.last_employees = employees)
+            
             .then(() => fetch(`http://localhost:8081/locations/?name_like=${this.state.value}`))
             .then(results => results.json())
             .then(locations => newState.locations = locations)
-                                    .then(() => {
-                                        console.table(newState)
-                                    })
+
+            .then(() => fetch(`http://localhost:8081/candies/?name_like=${this.state.value}`))
+            .then(results => results.json())
+            .then(candies => newState.candies = candies)
+            
             .then(() => {
                 this.props.history.push(
                 {
