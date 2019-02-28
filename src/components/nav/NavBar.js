@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css"
 import NameForm from "../SearchForm";
+import { withRouter } from "react-router";
 
-export default class NavBar extends Component {
+class NavBar extends Component {
     render() {
         return (
             <nav className="navbar navbar-light fixed-top light-blue flex-md-nowrap p-0 shadow">
@@ -23,3 +24,5 @@ export default class NavBar extends Component {
         )
     }
 }
+
+export default withRouter(NavBar);

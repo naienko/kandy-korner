@@ -22,10 +22,16 @@ class NameForm extends Component {
 
         fetch(`http://localhost:8081/employees/?first_name_like=${this.state.value}`)
             .then(results => results.json())
-            .then(employees => newState.employees = employees)
-            //.then(console.log(newState))
-            .then(this.props.history.push(`/search`, {state: newState}))
-            .then(console.log("props:", this.props))
+            .then(employees => newState.first_employees = employees)
+            .then(() => fetch(`http://localhost:8081/employees/?last_name_like=${this.state.value}`))
+            .then(results => results.json())
+            .then(employees => newState.last_employees = employees)
+            .then(this.props.history.push(
+                {
+                    pathname: "/search", 
+                    newState
+                }
+                ))
         event.preventDefault();
     }
     
