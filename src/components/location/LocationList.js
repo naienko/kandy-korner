@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
-import EmployeeList from './EmployeeList';
+import EmployeeList from '../employee/EmployeeList';
 
-export default class StoreList  extends Component {
+export default class LocationList  extends Component {
     render() {
         return (
-            <article className="locations">
-                <h2>Store List</h2>
+            <section className="locations">
+                { this.props.hasOwnProperty("employees") && <h2>Location List</h2> }
                 {
-                    this.props.stores.map(location => 
-                        <div key={location.id}>
+                    this.props.locations.map(location => 
+                        <div key={location.id} className="card">
                             <h3>{location.name}</h3>
                             {location.address}
                             { this.props.hasOwnProperty("employees") && 
@@ -28,7 +28,7 @@ export default class StoreList  extends Component {
                         </div>
                         )
                 }
-            </article>
+            </section>
         );
     }
 }

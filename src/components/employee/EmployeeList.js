@@ -1,13 +1,12 @@
 import React, { Component } from 'react'
 
-import "../index.css"
 export default class EmployeeList  extends Component {
     render() {
         return (
-            <React.Fragment>
+            <section className="employees">
                 {
                     this.props.employees.map(employee => 
-                        <div className="employee" key={employee.id}>
+                        <div className="employee card" key={employee.id}>
                             {employee.first_name} {employee.last_name}
                             {employee.hasOwnProperty("position") ? ", manager" : ""}
                             <br />
@@ -15,7 +14,7 @@ export default class EmployeeList  extends Component {
                         </div>
                         )
                 }
-            </React.Fragment>
+            </section>
         );
     }
 }

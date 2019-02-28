@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Route } from "react-router-dom";
-import StoreList from './StoreList';
-import CandyList from './CandyList';
-import EmployeeList from './EmployeeList';
-import SearchResults from './SearchResults';
+import LocationList from './location/LocationList';
+import CandyList from './candy/CandyList';
+import EmployeeList from './employee/EmployeeList';
+import SearchResults from './search/SearchResults';
 
 export default class ApplicationView extends Component {
 
@@ -50,9 +50,9 @@ export default class ApplicationView extends Component {
 
     render() {
         return (
-            <div id="body">
-                <Route exact path="/stores" render={() => {
-                    return <StoreList stores={this.state.locations}
+            <React.Fragment>
+                <Route exact path="/locations" render={() => {
+                    return <LocationList locations={this.state.locations}
                     employees={this.state.employees} />
                 }} />
                 <Route path="/employees" render={() => {
@@ -67,7 +67,7 @@ export default class ApplicationView extends Component {
                     return <SearchResults {...props} />
                 }} 
                 />
-            </div>
+            </React.Fragment>
         );
     }
 }

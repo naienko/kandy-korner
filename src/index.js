@@ -10,10 +10,3 @@ ReactDOM.render(
         <KandyKorner />
     </Router>
     , document.getElementById('root'));
-
-// Refactor your Kandy Korner application to use routing. Create a NavBar component with the following links.
-
-// Stores
-// Employees
-// Candies
-// Clicking on the links will list the corresponding data.
