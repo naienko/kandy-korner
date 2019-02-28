@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 export default class CandyList extends Component {
     render () {
         return (
-            <React.Fragment>
+            <section className="candies">
                  {
                     this.props.candies.map(candy => 
                         <div key={candy.id} className="card">
@@ -19,7 +19,7 @@ export default class CandyList extends Component {
                         </div>
                         )
                 }
-            </React.Fragment>
+            </section>
         );
     }
 }

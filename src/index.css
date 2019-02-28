@@ -13,10 +13,6 @@ code {
     monospace;
 }
 
-#body {
-  margin-top: 100px;
-}
-
-.employee {
-  border: 1px solid goldenrod;
+nav.navbar {
+  list-style-type: none;
 }
