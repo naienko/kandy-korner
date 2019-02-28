@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import NameForm from "../search/SearchForm";
 import { withRouter } from "react-router";
 
+import "bootstrap/dist/css/bootstrap.min.css"
+
 class NavBar extends Component {
     render() {
         return (
