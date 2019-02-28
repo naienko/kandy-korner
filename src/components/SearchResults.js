@@ -1,25 +1,15 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router";
-import EmployeeList from "./EmployeeList"
+//import EmployeeList from "./EmployeeList"
 
 class SearchResults extends Component {
-    // componentDidMount() {
-    //     const newState = {}
-    //     newState.employees = this.props.location.state;
-    //     console.log("newState is:", newState);
-    //     this.setState(newState);
-    //     console.log("state is:", this.state);
-    // }
-
-    // state = {
-    //     employees: []
-    // }
-
     render () {
-        console.log(this.props.location.newState["first_employees"])
+        const newState = this.props.location.newState;
+        console.log("newState is:", newState);
+        console.log(this.props.location.newState)
         return (
             <article className="search">
-                {/* <EmployeeList employees={this.props.location.newState.employees} /> */}
+                {/* <EmployeeList employees={newState.employees} /> */}
             </article>
         )
     }
