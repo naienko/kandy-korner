@@ -7,6 +7,13 @@ import SearchResults from './SearchResults';
 
 export default class ApplicationView extends Component {
 
+    state = {
+        candies: [],
+        employees: [],
+        locations: [],
+        types: []
+    };
+
     componentDidMount() {
         const newState = {};
 
@@ -29,12 +36,17 @@ export default class ApplicationView extends Component {
             .then(() => this.setState(newState))
     }
 
-    state = {
-        candies: [],
-        employees: [],
-        locations: [],
-        types: []
-    };
+    deleteCandy = id => {
+        fetch(`http://localhost:8081/candies/${id}`, {
+                method: "DELETE"
+            })
+            .then(() => fetch("http://localhost:8081/candies/"))
+            .then(results => results.json())
+            .then(candies => this.setState({ 
+                candies: candies
+                })
+            )
+    }
 
     render() {
         return (
@@ -48,7 +60,7 @@ export default class ApplicationView extends Component {
                 }} />
                 <Route path="/candies" render={() => {
                     return <CandyList candies={this.state.candies}
-                    types={this.state.types} />
+                    types={this.state.types} deleteCandy={this.deleteCandy} />
                 }}
                 />
                 <Route path="/search" render={() => {
