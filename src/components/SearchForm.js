@@ -26,12 +26,20 @@ class NameForm extends Component {
             // .then(() => fetch(`http://localhost:8081/employees/?last_name_like=${this.state.value}`))
             // .then(results => results.json())
             // .then(employees => newState.last_employees = employees)
-            .then(this.props.history.push(
+            .then(() => fetch(`http://localhost:8081/locations/?name_like=${this.state.value}`))
+            .then(results => results.json())
+            .then(locations => newState.locations = locations)
+                                    .then(() => {
+                                        console.table(newState)
+                                    })
+            .then(() => {
+                this.props.history.push(
                 {
                     pathname: "/search", 
-                    newState
+                    state: newState
                 }
-                ))
+                )
+            })
         event.preventDefault();
     }
     

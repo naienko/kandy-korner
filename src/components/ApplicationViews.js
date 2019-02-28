@@ -63,8 +63,8 @@ export default class ApplicationView extends Component {
                     types={this.state.types} deleteCandy={this.deleteCandy} />
                 }}
                 />
-                <Route path="/search" render={() => {
-                    return <SearchResults />
+                <Route path="/search" render={(props) => {
+                    return <SearchResults {...props} />
                 }} 
                 />
             </div>
