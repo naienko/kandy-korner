@@ -5,7 +5,7 @@ export default {
         return fetch(`${RemoteURL}/${db}/${id}`)
             .then(results => results.json())
     },
-    all: db => {
+    all: function (db) {
         return fetch(`${RemoteURL}/${db}`)
             .then(results => results.json())
     },

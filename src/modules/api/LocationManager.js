@@ -3,19 +3,24 @@ import APIManager from "./APIManager";
 const db = "locations";
 
 export default Object.create(APIManager, {
-    getLocation: id => {
-        APIManager.get(id, db)
+    getLocation: {value: function (id) {
+        return APIManager.get(id, db)
+        }
     },
-    getLocations: () => {
-        APIManager.all(db)
+    getLocations: {value: function () {
+        return APIManager.all(db)
+        }
     },
-    queryLocations: query => {
-        APIManager.getQuery(query, db)
+    queryLocations: {value: function (query) {
+        return APIManager.getQuery(query, db)
+        }
     },
-    deleteLocation: id => {
-        APIManager.delete(id, db)
+    deleteLocation: {value: function (id) {
+        return APIManager.delete(id, db)
+        }
     },
-    delAndGetLocations: id => {
-        APIManager.deleteAndFetch(id, db)
+    delAndGetLocations: {value: function (id) {
+        return APIManager.deleteAndFetch(id, db)
+        }
     }
 })

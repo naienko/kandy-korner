@@ -3,19 +3,24 @@ import APIManager from "./APIManager";
 const db = "candies";
 
 export default Object.create(APIManager, {
-    getCandy: id => {
-        APIManager.get(id, db)
+    getCandy: {value: function (id) {
+        return APIManager.get(id, db)
+        }
     },
-    getCandies: () => {
-        APIManager.all(db)
+    getCandies: {value: function () {
+        return APIManager.all(db)
+        }
     },
-    queryCandies: query => {
-        APIManager.getQuery(query, db)
+    queryCandies: {value: function (query) {
+        return APIManager.getQuery(query, db)
+        }
     },
-    deleteCandy: id => {
-        APIManager.delete(id, db)
+    deleteCandy: {value: function (id) {
+        return APIManager.delete(id, db)
+        }
     },
-    delAndGetCandies: id => {
-        APIManager.deleteAndFetch(id, db)
+    delAndGetCandies: {value: function (id) {
+        return APIManager.deleteAndFetch(id, db)
+        }
     }
 })
