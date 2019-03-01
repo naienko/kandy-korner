@@ -37,12 +37,8 @@ export default class ApplicationView extends Component {
     }
 
     deleteCandy = id => {
-        // fetch(`http://localhost:8081/candies/${id}`, {
-        //         method: "DELETE"
-        //     })
         CandyManager.delete(id)
-            .then(() => fetch("http://localhost:8081/candies/"))
-            .then(results => results.json())
+            .then(() => CandyManager.getAll())
             .then(candies => this.setState({ 
                 candies: candies
                 })
