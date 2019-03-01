@@ -4,6 +4,10 @@ import LocationList from './location/LocationList';
 import CandyList from './candy/CandyList';
 import EmployeeList from './employee/EmployeeList';
 import SearchResults from './search/SearchResults';
+import LocationManager from "../modules/api/LocationManager";
+import EmployeeManager from "../modules/api/EmployeeManager";
+import CandyManager from "../modules/api/CandyManager";
+import TypeManager from "../modules/api/TypeManager";
 
 export default class ApplicationView extends Component {
 
@@ -17,29 +21,26 @@ export default class ApplicationView extends Component {
     componentDidMount() {
         const newState = {};
 
-        fetch("http://localhost:8081/locations/")
-            .then(results => results.json())
+        LocationManager.getAll()
             .then(locations => newState.locations = locations)
 
-            .then(() => fetch("http://localhost:8081/employees/"))
-            .then(results => results.json())
+            .then(() => EmployeeManager.getAll())
             .then(employees => newState.employees = employees)
 
-            .then(() => fetch("http://localhost:8081/candies/"))
-            .then(results => results.json())
+            .then(() => CandyManager.getAll())
             .then(candies => newState.candies = candies)
 
-            .then(() => fetch("http://localhost:8081/types/"))
-            .then(results => results.json())
+            .then(() => TypeManager.getAll())
             .then(types => newState.types = types)
 // NOTE: you HAVE to do setState or your new data fetched just now is never going to show up in the app
             .then(() => this.setState(newState))
     }
 
     deleteCandy = id => {
-        fetch(`http://localhost:8081/candies/${id}`, {
-                method: "DELETE"
-            })
+        // fetch(`http://localhost:8081/candies/${id}`, {
+        //         method: "DELETE"
+        //     })
+        CandyManager.delete(id)
             .then(() => fetch("http://localhost:8081/candies/"))
             .then(results => results.json())
             .then(candies => this.setState({ 

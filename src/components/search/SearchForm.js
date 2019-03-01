@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router";
+import CandyManager from "../../modules/api/CandyManager";
+import LocationManager from "../../modules/api/LocationManager";
+import EmployeeManager from "../../modules/api/EmployeeManager";
 
 class NameForm extends Component {
     
@@ -19,17 +22,15 @@ class NameForm extends Component {
     
     handleSubmit(event) {        
         const newState = {};
+        const searchTerm = this.state.value;
 
-        fetch(`http://localhost:8081/employees/?first_name_like=${this.state.value}&last_name_like=${this.state.value}`)
-            .then(results => results.json())
+        EmployeeManager.getQuery(`first_name_like=${searchTerm}&last_name_like=${searchTerm}`)
             .then(employees => newState.employees = employees)
             
-            .then(() => fetch(`http://localhost:8081/locations/?name_like=${this.state.value}`))
-            .then(results => results.json())
+            .then(() => LocationManager.getQuery(`name_like=${searchTerm}`))
             .then(locations => newState.locations = locations)
 
-            .then(() => fetch(`http://localhost:8081/candies/?name_like=${this.state.value}`))
-            .then(results => results.json())
+            .then(() => CandyManager.getQuery(`name_like=${searchTerm}`))
             .then(candies => newState.candies = candies)
             
             .then(() => {
