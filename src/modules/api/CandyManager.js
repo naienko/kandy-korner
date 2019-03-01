@@ -1,22 +1,26 @@
-import Settings from "./APIManager";
+import APIManager from "./APIManager";
 
-export default {
-    get: id => {
-        return fetch(`${Settings.RemoteURL}/candies/${id}`)
-            .then(results => results.json())
+const db = "candies";
+
+export default Object.create(APIManager, {
+    getCandy: {value: function (id) {
+        return APIManager.get(id, db)
+        }
     },
-    getAll: () => {
-        return fetch(`${Settings.RemoteURL}/candies`)
-            .then(results => results.json())
+    getCandies: {value: function () {
+        return APIManager.all(db)
+        }
     },
-    getQuery: query => {
-        return fetch(`${Settings.RemoteURL}/candies/?${query}`)
-            .then(results => results.json())
+    queryCandies: {value: function (query) {
+        return APIManager.getQuery(query, db)
+        }
     },
-    delete: id => {
-        return fetch(`${Settings.RemoteURL}/candies/${id}`, {
-            method: "DELETE"
-        })
-            .then(results => results.json())
+    deleteCandy: {value: function (id) {
+        return APIManager.delete(id, db)
+        }
+    },
+    delAndGetCandies: {value: function (id) {
+        return APIManager.deleteAndFetch(id, db)
+        }
     }
-}
+})
