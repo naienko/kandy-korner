@@ -1,22 +1,21 @@
-import Settings from "./APIManager";
+import APIManager from "./APIManager";
 
-export default {
-    get: id => {
-        return fetch(`${Settings.RemoteURL}/locations/${id}`)
-            .then(results => results.json())
+const db = "locations";
+
+export default Object.create(APIManager, {
+    getLocation: id => {
+        APIManager.get(id, db)
     },
-    getAll: () => {
-        return fetch(`${Settings.RemoteURL}/locations`)
-            .then(results => results.json())
+    getLocations: () => {
+        APIManager.all(db)
     },
-    getQuery: query => {
-        return fetch(`${Settings.RemoteURL}/locations/?${query}`)
-            .then(results => results.json())
+    queryLocations: query => {
+        APIManager.getQuery(query, db)
     },
-    delete: id => {
-        return fetch(`${Settings.RemoteURL}/locations/${id}`, {
-            method: "DELETE"
-        })
-            .then(results => results.json())
+    deleteLocation: id => {
+        APIManager.delete(id, db)
+    },
+    delAndGetLocations: id => {
+        APIManager.deleteAndFetch(id, db)
     }
-}
+})
