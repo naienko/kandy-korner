@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router";
+import CandyManager from "../../modules/api/CandyManager";
 
 class NameForm extends Component {
     
@@ -28,8 +29,7 @@ class NameForm extends Component {
             .then(results => results.json())
             .then(locations => newState.locations = locations)
 
-            .then(() => fetch(`http://localhost:8081/candies/?name_like=${this.state.value}`))
-            .then(results => results.json())
+            .then(() => CandyManager.getQuery(`name_like=${this.state.value}`))
             .then(candies => newState.candies = candies)
             
             .then(() => {

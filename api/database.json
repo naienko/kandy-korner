@@ -96,6 +96,11 @@
       "id": 5,
       "name": "M&Ms",
       "typeId": 1
+    },
+    {
+      "id": 6,
+      "name": "Gummy Worms",
+      "typeId": 2
     }
   ]
 }
