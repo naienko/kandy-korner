@@ -8,6 +8,8 @@ import LocationManager from "../modules/api/LocationManager";
 import EmployeeManager from "../modules/api/EmployeeManager";
 import CandyManager from "../modules/api/CandyManager";
 import TypeManager from "../modules/api/TypeManager";
+import EmployeeForm from "./employee/EmployeeForm";
+import CandyForm from "./candy/CandyForm";
 
 export default class ApplicationView extends Component {
 
@@ -37,29 +39,60 @@ export default class ApplicationView extends Component {
     }
 
     deleteCandy = id => {
-        CandyManager.delete(id)
-            .then(() => CandyManager.getAll())
+        CandyManager.delAndGetCandies(id)
             .then(candies => this.setState({ 
                 candies: candies
-                })
-            )
+            })
+        )
+    }
+
+    addEmployee = employee => {
+        EmployeeManager.addEmployee(employee)
+            .then(() => EmployeeManager.getEmployees())
+            .then(employees => this.setState({
+                employees: employees
+            })
+        )
+    }
+
+    addCandy = candy => {
+        CandyManager.addCandy(candy)
+            .then(() => CandyManager.getcandies())
+            .then(candies => this.setState({
+                candies: candies
+            })
+        )
     }
 
     render() {
         return (
             <React.Fragment>
-                <Route exact path="/locations" render={() => {
-                    return <LocationList locations={this.state.locations}
-                    employees={this.state.employees} />
+                <Route exact path="/locations" render={(props) => {
+                    return <LocationList {...props}
+                        locations={this.state.locations}
+                        employees={this.state.employees} />
                 }} />
-                <Route path="/employees" render={() => {
-                    return <EmployeeList employees={this.state.employees} />
+                <Route exact path="/employees" render={(props) => {
+                    return <EmployeeList {...props} employees={this.state.employees} />
                 }} />
-                <Route path="/candies" render={() => {
-                    return <CandyList candies={this.state.candies}
-                    types={this.state.types} deleteCandy={this.deleteCandy} />
-                }}
-                />
+                <Route path="/employees/new" render={(props) => {
+                    return <EmployeeForm {...props} 
+                        addEmployee={this.addEmployee} 
+                        locations={this.state.locations} />
+                }} />
+
+                <Route exact path="/candies" render={(props) => {
+                    return <CandyList {...props}
+                        candies={this.state.candies}
+                        types={this.state.types} 
+                        deleteCandy={this.deleteCandy} />
+                }} />
+                <Route path="/candies/new/" render={(props) => {
+                    return <CandyForm {...props}
+                        addCandy={this.addCandy}
+                        types={this.state.types} />
+                }} />
+
                 <Route path="/search" render={(props) => {
                     return <SearchResults {...props} />
                 }} 

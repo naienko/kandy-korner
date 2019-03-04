@@ -22,5 +22,9 @@ export default Object.create(APIManager, {
     delAndGetCandies: {value: function (id) {
         return APIManager.deleteAndFetch(id, db)
         }
+    },
+    addCandy: {value: function (object) {
+        return APIManager.add(object)
+        }
     }
 })
