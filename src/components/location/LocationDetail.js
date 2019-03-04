@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import EmployeeList from "../employee/EmployeeList";
 
 export default class LocationDetail extends Component {
+    isLocation = true;
+
     render() {
         /*
             Using the route parameter, find the animal that the
@@ -22,10 +24,10 @@ export default class LocationDetail extends Component {
                                 <React.Fragment>
                                     <p>Employees</p>
                                     <section className="employees-local">
-                                        <EmployeeList employees={this.props.employees
+                                        <EmployeeList isLocation={this.isLocation} employees={this.props.employees
                                             .filter( employee => employee.storeId === location.id && employee.position === "manager" )
                                         }/>
-                                        <EmployeeList employees={this.props.employees
+                                        <EmployeeList isLocation={this.isLocation} employees={this.props.employees
                                             .filter( employee => employee.storeId === location.id && employee.hasOwnProperty("position") !== true )
                                             .sort((a, b) => (a.last_name > b.last_name) ? 1 : -1)
                                         }/>
