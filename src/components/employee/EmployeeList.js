@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { Link } from "react-router-dom";
 
 export default class EmployeeList extends Component {
     render() {
@@ -15,7 +16,7 @@ export default class EmployeeList extends Component {
                             {employee.first_name} {employee.last_name}
                             {employee.hasOwnProperty("position") ? ", manager" : ""}
                             <br />
-                            contact: {employee.phone}
+                            <Link className="nav-link" to={`/employees/${employee.id}`}>Details</Link>
                         </div>
                         )
                 }

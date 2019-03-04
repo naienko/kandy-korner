@@ -1,16 +1,24 @@
 import React, { Component } from 'react';
 import { Route, Redirect } from "react-router-dom";
+
 import LocationList from './location/LocationList';
 import CandyList from './candy/CandyList';
 import EmployeeList from './employee/EmployeeList';
+
 import SearchResults from './search/SearchResults';
+import Login from "./authentication/Login";
+
 import LocationManager from "../modules/api/LocationManager";
 import EmployeeManager from "../modules/api/EmployeeManager";
 import CandyManager from "../modules/api/CandyManager";
 import TypeManager from "../modules/api/TypeManager";
+
 import EmployeeForm from "./employee/EmployeeForm";
 import CandyForm from "./candy/CandyForm";
-import Login from "./authentication/Login";
+
+import EmployeeDetail from "./employee/EmployeeDetail";
+import CandyDetail from './candy/CandyDetail';
+import LocationDetail from './location/LocationDetail';
 
 export default class ApplicationView extends Component {
 
@@ -70,7 +78,6 @@ export default class ApplicationView extends Component {
     render() {
         return (
             <React.Fragment>
-
                 <Route path="/login" component={Login} />
 
                 <Route exact path="/locations" render={(props) => {
@@ -81,8 +88,16 @@ export default class ApplicationView extends Component {
                     } else {
                         return <Redirect to="/login" />
                     }
-                    
                 }} />
+                <Route path="/locations/:locationId(\d+)" render={(props) => {
+                    if (this.isAuthenticated()) {
+                        return <LocationDetail {...props} locations={this.state.locations}
+                            employees={this.state.employees} />
+                    } else {
+                        return <Redirect to="/login" />
+                    }
+                }} />
+
                 <Route exact path="/employees" render={(props) => {
                     if (this.isAuthenticated()) {
                         return <EmployeeList {...props} employees={this.state.employees} />
@@ -95,6 +110,13 @@ export default class ApplicationView extends Component {
                         return <EmployeeForm {...props} 
                             addEmployee={this.addEmployee} 
                             locations={this.state.locations} />
+                    } else {
+                        return <Redirect to="/login" />
+                    }
+                }} />
+                <Route path="/employees/:employeeId(\d+)" render={(props) => {
+                    if (this.isAuthenticated()) {
+                        return <EmployeeDetail {...props} employees={this.state.employees} />
                     } else {
                         return <Redirect to="/login" />
                     }
@@ -115,6 +137,15 @@ export default class ApplicationView extends Component {
                         return <CandyForm {...props}
                             addCandy={this.addCandy}
                             types={this.state.types} />
+                    } else {
+                        return <Redirect to="/login" />
+                    }
+                }} />
+                <Route path="/candies/:candyId(\d+)" render={(props) => {
+                    if (this.isAuthenticated()) {
+                        return <CandyDetail {...props} 
+                            types={this.state.types} 
+                            candies={this.state.candies} />
                     } else {
                         return <Redirect to="/login" />
                     }
