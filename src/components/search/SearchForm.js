@@ -48,7 +48,7 @@ class NameForm extends Component {
         return (
             <form onSubmit={this.handleSubmit}>
             <label>
-            Search:
+            Search:{" "}
             <input type="text" value={this.state.value} onChange={this.handleChange} />
             </label>
             <input type="submit" value="Submit" />
