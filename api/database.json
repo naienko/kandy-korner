@@ -55,6 +55,14 @@
       "storeId": 2,
       "phone": "555-555-5555",
       "position": "manager"
+    },
+    {
+      "first_name": "Jughead",
+      "last_name": "Jones",
+      "phone": "fff-fff-ffff",
+      "storeId": 1,
+      "position": "manager",
+      "id": 7
     }
   ],
   "types": [

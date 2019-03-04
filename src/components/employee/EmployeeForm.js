@@ -27,6 +27,9 @@ export default class EmployeeForm extends Component {
                 phone: this.state.phoneNumber,
                 storeId: parseInt(this.state.storeId)
             };
+            if (this.state.empPosition !== "") {
+                employee.position = this.state.empPosition
+            }
 
             this.props.addEmployee(employee)
                 .then(() => this.props.history.push("/employees"))

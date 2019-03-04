@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
 
-export default class EmployeeList  extends Component {
+export default class EmployeeList extends Component {
     render() {
         return (
             <section className="employees">
-            <div className="employeeButton">
+            {this.props.isLocation ? ""
+            : <div className="employeeButton">
                 <button type="button" className="btn btn-success" onClick={() => {this.props.history.push("/employees/new")}}>Add New Employee</button>
             </div>
+            }
                 {
                     this.props.employees.map(employee => 
                         <div className="employee card" key={employee.id}>
