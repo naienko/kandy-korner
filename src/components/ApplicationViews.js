@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route } from "react-router-dom";
+import { Route, Redirect } from "react-router-dom";
 import LocationList from './location/LocationList';
 import CandyList from './candy/CandyList';
 import EmployeeList from './employee/EmployeeList';
@@ -10,8 +10,11 @@ import CandyManager from "../modules/api/CandyManager";
 import TypeManager from "../modules/api/TypeManager";
 import EmployeeForm from "./employee/EmployeeForm";
 import CandyForm from "./candy/CandyForm";
+import Login from "./authentication/Login";
 
 export default class ApplicationView extends Component {
+
+    isAuthenticated = () => sessionStorage.getItem("credentials") !== null
 
     state = {
         candies: [],
@@ -67,34 +70,62 @@ export default class ApplicationView extends Component {
     render() {
         return (
             <React.Fragment>
+
+                <Route path="/login" component={Login} />
+
                 <Route exact path="/locations" render={(props) => {
-                    return <LocationList {...props}
-                        locations={this.state.locations}
-                        employees={this.state.employees} />
+                    if (this.isAuthenticated()) {
+                        return <LocationList {...props}
+                            locations={this.state.locations}
+                            employees={this.state.employees} />
+                    } else {
+                        return <Redirect to="/login" />
+                    }
+                    
                 }} />
                 <Route exact path="/employees" render={(props) => {
-                    return <EmployeeList {...props} employees={this.state.employees} />
+                    if (this.isAuthenticated()) {
+                        return <EmployeeList {...props} employees={this.state.employees} />
+                    } else {
+                        return <Redirect to="/login" />
+                    }
                 }} />
                 <Route path="/employees/new" render={(props) => {
-                    return <EmployeeForm {...props} 
-                        addEmployee={this.addEmployee} 
-                        locations={this.state.locations} />
+                    if (this.isAuthenticated()) {
+                        return <EmployeeForm {...props} 
+                            addEmployee={this.addEmployee} 
+                            locations={this.state.locations} />
+                    } else {
+                        return <Redirect to="/login" />
+                    }
                 }} />
 
                 <Route exact path="/candies" render={(props) => {
-                    return <CandyList {...props}
-                        candies={this.state.candies}
-                        types={this.state.types} 
-                        deleteCandy={this.deleteCandy} />
+                    if (this.isAuthenticated()) {
+                        return <CandyList {...props}
+                            candies={this.state.candies}
+                            types={this.state.types} 
+                            deleteCandy={this.deleteCandy} />
+                    } else {
+                        return <Redirect to="/login" />
+                    }
                 }} />
                 <Route path="/candies/new/" render={(props) => {
-                    return <CandyForm {...props}
-                        addCandy={this.addCandy}
-                        types={this.state.types} />
+                    if (this.isAuthenticated()) {
+                        return <CandyForm {...props}
+                            addCandy={this.addCandy}
+                            types={this.state.types} />
+                    } else {
+                        return <Redirect to="/login" />
+                    }
                 }} />
 
                 <Route path="/search" render={(props) => {
-                    return <SearchResults {...props} />
+                    if (this.isAuthenticated()) {
+                        return <SearchResults {...props} />
+                    } else {
+                        return <Redirect to="/login" />
+                    }
                 }} 
                 />
             </React.Fragment>
