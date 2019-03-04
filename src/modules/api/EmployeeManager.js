@@ -22,5 +22,9 @@ export default Object.create(APIManager, {
     delAndGetEmployees: {value: function (id) {
         return APIManager.deleteAndFetch(id, db)
         }
+    },
+    addEmployee: {value: function (object) {
+        return APIManager.add(db, object)
+        }
     }
 })

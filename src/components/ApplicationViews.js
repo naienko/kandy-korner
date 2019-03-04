@@ -41,8 +41,17 @@ export default class ApplicationView extends Component {
             .then(() => CandyManager.getAll())
             .then(candies => this.setState({ 
                 candies: candies
-                })
-            )
+            })
+        )
+    }
+
+    addEmployee = employee => {
+        EmployeeManager.addEmployee(employee)
+            .then(() => EmployeeManager.getAll())
+            .then(employees => this.setState({
+                employees: employees
+            })
+        )
     }
 
     render() {
@@ -52,12 +61,19 @@ export default class ApplicationView extends Component {
                     return <LocationList locations={this.state.locations}
                     employees={this.state.employees} />
                 }} />
-                <Route path="/employees" render={() => {
-                    return <EmployeeList employees={this.state.employees} />
+                <Route path="/employees" render={(props) => {
+                    return <EmployeeList {...props} employees={this.state.employees} />
                 }} />
+                <Route path="employees/new" render={(props) => {
+                    return <EmployeeForm {...props} 
+                        addEmployee={this.addEmployee} 
+                        locations={this.state.locations} />
+                }} />
+
                 <Route path="/candies" render={() => {
                     return <CandyList candies={this.state.candies}
-                    types={this.state.types} deleteCandy={this.deleteCandy} />
+                        types={this.state.types} 
+                        deleteCandy={this.deleteCandy} />
                 }}
                 />
                 <Route path="/search" render={(props) => {

@@ -24,5 +24,15 @@ export default {
         })
         .then(() => fetch(`${RemoteURL}/${db}`))
         .then(results => results.json())
+    },
+    add: (db, newObject) => {
+        return fetch(`${RemoteURL}/${db}`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(newObject)
+        })
+        .then(results => results.json())
     }
 }
