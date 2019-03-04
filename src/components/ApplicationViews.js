@@ -37,7 +37,8 @@ export default class ApplicationView extends Component {
     }
 
     deleteCandy = id => {
-        CandyManager.delAndGetCandies(id)
+        CandyManager.delete(id)
+            .then(() => CandyManager.getAll())
             .then(candies => this.setState({ 
                 candies: candies
                 })
