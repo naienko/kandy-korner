@@ -1,22 +1,26 @@
-import Settings from "./APIManager";
+import APIManager from "./APIManager";
 
-export default {
-    get: id => {
-        return fetch(`${Settings.RemoteURL}/employees/${id}`)
-            .then(results => results.json())
+const db = "employees";
+
+export default Object.create(APIManager, {
+    getEmployee: {value: function (id) {
+        return APIManager.get(id, db)
+        }
     },
-    getAll: () => {
-        return fetch(`${Settings.RemoteURL}/employees`)
-            .then(results => results.json())
+    getEmployees: {value: function () {
+        return APIManager.all(db)
+        }
     },
-    getQuery: query => {
-        return fetch(`${Settings.RemoteURL}/employees/?${query}`)
-            .then(results => results.json())
+    queryEmployees: {value: function (query) {
+        return APIManager.getQuery(query, db)
+        }
     },
-    delete: id => {
-        return fetch(`${Settings.RemoteURL}/employees/${id}`, {
-            method: "DELETE"
-        })
-            .then(results => results.json())
+    deleteEmployee: {value: function (id) {
+        return APIManager.delete(id, db)
+        }
+    },
+    delAndGetEmployees: {value: function (id) {
+        return APIManager.deleteAndFetch(id, db)
+        }
     }
-}
+})

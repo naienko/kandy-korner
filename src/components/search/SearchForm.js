@@ -24,13 +24,13 @@ class NameForm extends Component {
         const newState = {};
         const searchTerm = this.state.value;
 
-        EmployeeManager.getQuery(`first_name_like=${searchTerm}&last_name_like=${searchTerm}`)
+        EmployeeManager.queryEmployees(`first_name_like=${searchTerm}&last_name_like=${searchTerm}`)
             .then(employees => newState.employees = employees)
             
-            .then(() => LocationManager.getQuery(`name_like=${searchTerm}`))
+            .then(() => LocationManager.queryLocations(`name_like=${searchTerm}`))
             .then(locations => newState.locations = locations)
 
-            .then(() => CandyManager.getQuery(`name_like=${searchTerm}`))
+            .then(() => CandyManager.queryCandies(`name_like=${searchTerm}`))
             .then(candies => newState.candies = candies)
             
             .then(() => {

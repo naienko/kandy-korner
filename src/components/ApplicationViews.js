@@ -21,16 +21,16 @@ export default class ApplicationView extends Component {
     componentDidMount() {
         const newState = {};
 
-        LocationManager.getAll()
+        LocationManager.getLocations()
             .then(locations => newState.locations = locations)
 
-            .then(() => EmployeeManager.getAll())
+            .then(() => EmployeeManager.getEmployees())
             .then(employees => newState.employees = employees)
 
-            .then(() => CandyManager.getAll())
+            .then(() => CandyManager.getCandies())
             .then(candies => newState.candies = candies)
 
-            .then(() => TypeManager.getAll())
+            .then(() => TypeManager.getTypes())
             .then(types => newState.types = types)
 // NOTE: you HAVE to do setState or your new data fetched just now is never going to show up in the app
             .then(() => this.setState(newState))
