@@ -8,6 +8,7 @@ import LocationManager from "../modules/api/LocationManager";
 import EmployeeManager from "../modules/api/EmployeeManager";
 import CandyManager from "../modules/api/CandyManager";
 import TypeManager from "../modules/api/TypeManager";
+import EmployeeForm from "./employee/EmployeeForm";
 
 export default class ApplicationView extends Component {
 
@@ -61,7 +62,7 @@ export default class ApplicationView extends Component {
                     return <LocationList locations={this.state.locations}
                     employees={this.state.employees} />
                 }} />
-                <Route path="/employees" render={(props) => {
+                <Route exact path="/employees" render={(props) => {
                     return <EmployeeList {...props} employees={this.state.employees} />
                 }} />
                 <Route path="employees/new" render={(props) => {
