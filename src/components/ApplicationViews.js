@@ -7,6 +7,7 @@ import EmployeeList from './employee/EmployeeList';
 
 import SearchResults from './search/SearchResults';
 import Login from "./authentication/Login";
+import AuthRoute from "./authentication/AuthRoute";
 
 import LocationManager from "../modules/api/LocationManager";
 import EmployeeManager from "../modules/api/EmployeeManager";
@@ -21,8 +22,6 @@ import CandyDetail from './candy/CandyDetail';
 import LocationDetail from './location/LocationDetail';
 
 export default class ApplicationView extends Component {
-
-    isAuthenticated = () => sessionStorage.getItem("credentials") !== null
 
     state = {
         candies: [],
@@ -80,85 +79,34 @@ export default class ApplicationView extends Component {
             <React.Fragment>
                 <Route path="/login" component={Login} />
 
-                <Route exact path="/locations" render={(props) => {
-                    if (this.isAuthenticated()) {
-                        return <LocationList {...props}
-                            locations={this.state.locations}
-                            employees={this.state.employees} />
-                    } else {
-                        return <Redirect to="/login" />
-                    }
-                }} />
-                <Route path="/locations/:locationId(\d+)" render={(props) => {
-                    if (this.isAuthenticated()) {
-                        return <LocationDetail {...props} locations={this.state.locations}
-                            employees={this.state.employees} />
-                    } else {
-                        return <Redirect to="/login" />
-                    }
-                }} />
+                <AuthRoute path="/locations" Destination={LocationList} 
+                    locations={this.state.locations} />
+                
+                <AuthRoute path="/locations/:locationId(\d+)" Destination={LocationDetail} 
+                    locations={this.state.locations}
+                    employees={this.state.employees} />
 
-                <Route exact path="/employees" render={(props) => {
-                    if (this.isAuthenticated()) {
-                        return <EmployeeList {...props} employees={this.state.employees} />
-                    } else {
-                        return <Redirect to="/login" />
-                    }
-                }} />
-                <Route path="/employees/new" render={(props) => {
-                    if (this.isAuthenticated()) {
-                        return <EmployeeForm {...props} 
-                            addEmployee={this.addEmployee} 
-                            locations={this.state.locations} />
-                    } else {
-                        return <Redirect to="/login" />
-                    }
-                }} />
-                <Route path="/employees/:employeeId(\d+)" render={(props) => {
-                    if (this.isAuthenticated()) {
-                        return <EmployeeDetail {...props} employees={this.state.employees} />
-                    } else {
-                        return <Redirect to="/login" />
-                    }
-                }} />
+                <AuthRoute path="/employees" Destination={EmployeeList}
+                    employees={this.state.employees} />
+                <AuthRoute path="/employees/new" Destination={EmployeeForm}
+                    addEmployee={this.addEmployee} 
+                    locations={this.state.locations} />
+                <AuthRoute path="/employees/:employeeId(\d+)" Destination={EmployeeDetail}
+                    employees={this.state.employees} />
 
-                <Route exact path="/candies" render={(props) => {
-                    if (this.isAuthenticated()) {
-                        return <CandyList {...props}
-                            candies={this.state.candies}
-                            types={this.state.types} 
-                            deleteCandy={this.deleteCandy} />
-                    } else {
-                        return <Redirect to="/login" />
-                    }
-                }} />
-                <Route path="/candies/new/" render={(props) => {
-                    if (this.isAuthenticated()) {
-                        return <CandyForm {...props}
-                            addCandy={this.addCandy}
-                            types={this.state.types} />
-                    } else {
-                        return <Redirect to="/login" />
-                    }
-                }} />
-                <Route path="/candies/:candyId(\d+)" render={(props) => {
-                    if (this.isAuthenticated()) {
-                        return <CandyDetail {...props} 
-                            types={this.state.types} 
-                            candies={this.state.candies} />
-                    } else {
-                        return <Redirect to="/login" />
-                    }
-                }} />
+                <AuthRoute path="/candies" Destination={CandyList}
+                    candies={this.state.candies}
+                    types={this.state.types} 
+                    deleteCandy={this.deleteCandy} />
+                <AuthRoute path="/candies/new/" Destination={CandyForm}
+                    addCandy={this.addCandy}
+                    types={this.state.types} />
+                <AuthRoute path="/candies/:candyId(\d+)" Destination={CandyDetail}
+                    types={this.state.types} 
+                    candies={this.state.candies} />
 
-                <Route path="/search" render={(props) => {
-                    if (this.isAuthenticated()) {
-                        return <SearchResults {...props} />
-                    } else {
-                        return <Redirect to="/login" />
-                    }
-                }} 
-                />
+                <AuthRoute path="/search" Destination={SearchResults} />
+
             </React.Fragment>
         );
     }

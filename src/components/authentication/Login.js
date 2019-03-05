@@ -1,5 +1,5 @@
-import React, { Component } from "react"
-
+import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
 
 export default class Login extends Component {
 
@@ -31,6 +31,8 @@ export default class Login extends Component {
                 password: this.state.password
             })
         )
+
+        this.props.history.goBack();
     }
 
     render() {
