@@ -12,7 +12,7 @@ const AuthRoute = ({Destination,...srcProps}) => {
             if (isAuthenticated()) {
                 return <Destination {...props} {...srcProps} />
             } else {
-                return <Login />
+                return <Login {...props} />
             }
         }} />
     )

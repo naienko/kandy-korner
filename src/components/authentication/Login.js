@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { withRouter } from "react-router-dom";
 
 export default class Login extends Component {
 
@@ -32,7 +31,7 @@ export default class Login extends Component {
             })
         )
 
-        this.props.history.goBack();
+        this.props.history.go(0);
     }
 
     render() {
